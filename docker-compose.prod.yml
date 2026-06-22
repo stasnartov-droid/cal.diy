@@ -1,0 +1,23 @@
+networks:
+  stack:
+    name: stack
+    external: false
+
+services:
+  calcom:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_WEBAPP_URL: ${NEXT_PUBLIC_WEBAPP_URL}
+        NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+        CALENDSO_ENCRYPTION_KEY: ${CALENDSO_ENCRYPTION_KEY}
+        DATABASE_URL: ${DATABASE_URL}
+        DATABASE_DIRECT_URL: ${DATABASE_DIRECT_URL}
+        CALCOM_TELEMETRY_DISABLED: 1
+    restart: always
+    networks:
+      - stack
+    ports:
+      - 3000:3000
+    env_file: .env
