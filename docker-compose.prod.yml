@@ -9,12 +9,16 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_WEBAPP_URL: ${NEXT_PUBLIC_WEBAPP_URL}
+        NEXT_PUBLIC_WEBAPP_URL: https://book.aionius.com
         NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
         CALENDSO_ENCRYPTION_KEY: ${CALENDSO_ENCRYPTION_KEY}
         DATABASE_URL: ${DATABASE_URL}
         DATABASE_DIRECT_URL: ${DATABASE_DIRECT_URL}
         CALCOM_TELEMETRY_DISABLED: 1
+        NEXT_PUBLIC_DISABLE_SIGNUP: "true"
+        ORGANIZATIONS_ENABLED: "1"
+        NEXT_PUBLIC_HOSTED_CAL_FEATURES: "1"
+        EMAIL_FROM: stan@aionius.com
     restart: always
     networks:
       - stack
